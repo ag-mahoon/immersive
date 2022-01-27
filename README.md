@@ -6,8 +6,10 @@ Immersive assignment - please follow the instruction to run the api server. Plea
 ```bash
 # development
 $ npm install
-
 ```
+
+Please rename .env.template to to .env for development
+
 ### Docker Container
 I've created a docker file that use the container for mysql database. Please run the docker first and use the migration section to run all the migrations In oder to run application as a docker container. This required docker to be install on your machine.
 
