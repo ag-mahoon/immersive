@@ -33,6 +33,8 @@ exports.findAll = async (req, res) => {
     const data = await Companies.findAll({ include: Employees });
     res.send(data);
   } catch (err) {
+    console.log("i am showing errors");
+    console.log(err);
     res.status(500).send({
       message: err.message || "Error occurred",
     });
@@ -45,7 +47,7 @@ exports.findOne = async (req, res) => {
     const data = await Companies.findByPk(id, { include: Employees });
     if (!data) {
       res.send({
-        message: "No data found for give company id " + id
+        message: "No data found for give company id " + id,
       });
     } else {
       res.send(data);
@@ -61,21 +63,20 @@ exports.update = async (req, res) => {
   const id = req.params.id;
   try {
     const num = await Companies.update(req.body, {
-      where: { id: id }
+      where: { id: id },
     });
     if (num == 1) {
       res.send({
-        message: "Company was updated successfully."
+        message: "Company was updated successfully.",
       });
     } else {
       res.send({
-        message: `Cannot update company with id=${id}.`
+        message: `Cannot update company with id=${id}.`,
       });
     }
-  }
-  catch (err) {
+  } catch (err) {
     res.status(500).send({
-      message: "Error updating company with id=" + id
+      message: "Error updating company with id=" + id,
     });
   }
 };
@@ -87,7 +88,7 @@ exports.delete = async (req, res) => {
   try {
     await Employees.destroy({ where: { CompanyId: id } });
     const num = await Companies.destroy({
-      where: { id }
+      where: { id },
     });
     if (num <= 0) {
       throw "Can not delete company with id = " + id;
@@ -98,7 +99,8 @@ exports.delete = async (req, res) => {
   } catch (err) {
     await transaction.rollback();
     res.status(500).send({
-      message: "Could not delete company with id=" + id
+      message: "Could not delete company with id=" + id,
     });
   }
 };
+

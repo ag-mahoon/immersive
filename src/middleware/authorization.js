@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const authorization = (req, res, next) => {
     const { role } = req.user
     if (role !== 'admin') {
-        return res.status(403).send("Not authorize to perform this operation");
+        return res.status(403).send({ error: "Not authorize to perform this operation" });
     }
 
     return next();

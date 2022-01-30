@@ -16,9 +16,8 @@ exports.login = (req, res) => {
             return res.status(200).json(dummyUser);
         }
 
-        return res.status(400).send("Invalid Credentials");
+        return res.status(400).send({ error: "Invalid Credentials" });
     } catch (err) {
-        console.log(err);
-        return res.status(500).send("An unexpected error occurred");
+        return res.status(500).send({ error: "An unexpected error occurred" });
     }
 };

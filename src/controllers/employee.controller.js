@@ -11,16 +11,11 @@ exports.create = async (req, res) => {
   }
 
   const companyId = req.params.companyId;
-  console.log('company id is ');
-  console.log(companyId);
 
   try {
     const company = await Companies.findByPk(companyId);
 
-    console.log('company is');
-    console.log(company);
-
-    if (!company) {
+    if (!company || company.length === 0) {
       return res.status(400).send({
         message: "No company found for given id " + companyId,
       });
@@ -31,7 +26,7 @@ exports.create = async (req, res) => {
       lastName: req.body.lastName,
       email: req.body.description,
       phone: req.body.phone,
-      CompanyId: companyId
+      CompanyId: companyId,
     };
 
     try {
@@ -46,8 +41,8 @@ exports.create = async (req, res) => {
     res.status(500).send({
       message: err.message || "No company found for given id " + companyId,
     });
-  };
-}
+  }
+};
 exports.findAll = async (req, res) => {
   const companyId = req.params.companyId;
   try {
@@ -67,7 +62,7 @@ exports.findOne = async (req, res) => {
     const data = await Employees.findByPk(id);
     if (!data) {
       res.send({
-        message: "No data found for give employee id " + id
+        message: "No data found for give employee id " + id,
       });
     } else {
       res.send(data);
@@ -83,21 +78,20 @@ exports.update = async (req, res) => {
   const id = req.params.id;
   try {
     const num = await Employees.update(req.body, {
-      where: { id: id }
+      where: { id: id },
     });
     if (num == 1) {
       res.send({
-        message: "Employee was updated successfully."
+        message: "Employee was updated successfully.",
       });
     } else {
       res.send({
-        message: `Cannot update employee with id=${id}.`
+        message: `Cannot update employee with id=${id}.`,
       });
     }
-  }
-  catch (err) {
+  } catch (err) {
     res.status(500).send({
-      message: "Error updating employee with id=" + id
+      message: "Error updating employee with id=" + id,
     });
   }
 };
@@ -113,7 +107,8 @@ exports.delete = async (req, res) => {
     res.send({ message: `Employee with id = ${id} was deleted successfully!` });
   } catch (err) {
     res.status(500).send({
-      message: "Could not delete employee with id=" + id
+      message: "Could not delete employee with id=" + id,
     });
   }
-}
+};
+
