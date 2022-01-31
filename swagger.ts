@@ -1,6 +1,6 @@
-const swaggerAutogen = require('swagger-autogen')()
+import swaggerAutogen from 'swagger-autogen'
+import outputFile from './swagger_output.json'
 
-const outputFile = './swagger_output.json'
 const endpointsFiles = [
     './src/routes/login.route.js',
     './src/routes/welcome.route.js',

@@ -1,7 +1,6 @@
-const authenticate = require('../middleware/authenticate.js');
-
-module.exports = (app) => {
-    app.get("/api/welcome", authenticate, (req, res) => {
+var authenticate = require('../middleware/authenticate.js');
+module.exports = function (app) {
+    app.get("/api/welcome", authenticate, function (req, res) {
         res.json({ message: "Welcome" });
     });
-}
+};

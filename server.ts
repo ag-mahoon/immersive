@@ -1,6 +1,6 @@
 require("dotenv").config();
-const db = require("./models");
-const app = require('./src/app');
+import db  from './models';
+import app from './src/app';
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json');

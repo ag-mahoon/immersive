@@ -1,18 +1,18 @@
-const jwt = require("jsonwebtoken");
-
-const verifyToken = (req, res, next) => {
-    const token = req.headers["x-access-token"];
-
+"use strict";
+exports.__esModule = true;
+var jwt = require("jsonwebtoken");
+var verifyToken = function (req, res, next) {
+    var token = req.headers["x-access-token"];
     if (!token) {
         return res.status(403).send({ error: "A token is required for authentication" });
     }
     try {
-        const decoded = jwt.verify(token, process.env.TOKEN_KEY);
+        var decoded = jwt.verify(token, process.env.TOKEN_KEY);
         req.user = decoded;
-    } catch (err) {
+    }
+    catch (err) {
         return res.status(401).send({ error: "Invalid Token" });
     }
     return next();
 };
-
-module.exports = verifyToken;
+exports["default"] = verifyToken;
