@@ -48,6 +48,15 @@ $ npm run start:dev
 
 ```
 
+### Run uni test.
+Please use the following command to run the unit test. I am currently using the same database for integration testing for the purpose of demonstration.
+
+```bash
+# test
+$ npm run test
+
+```
+
 ### Administrator
 At the minute I've create a file `user.js` that contain the administrator credentials and role. If you want to test the api for non administrator user, you've to manaully change the role to e.g. 'user' or something lik
 - For login credentials please the below username and password
