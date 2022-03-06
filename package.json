@@ -2,8 +2,9 @@
   "name": "immersive",
   "version": "1.0.0",
   "description": "Assignment to create CRUD operations",
-  "main": "server.ts",
+  "main": "server.js",
   "scripts": {
+    "practice": "node server.js",
     "start:dev": "nodemon server.ts",
     "start:generate:doc": "node swagger.ts",
     "test": "jest --runInBand",
